@@ -1,6 +1,7 @@
 <?php
 
-class Controller {
+class Controller
+{
     public function view(string $view, array $data = [])
     {
         if (count($data)) {
@@ -8,5 +9,11 @@ class Controller {
         }
 
         require_once '../app/Views/' . $view . '.php';
+    }
+
+    public function model(string $model)
+    {
+        require_once '../app/Models/' . $model . '.php';
+        return new $model;
     }
 }
