@@ -31,7 +31,7 @@ class Database
         $this->stmt = $this->dbh->prepare($query);
     }
 
-    public function bind($param, $value, $type = null): void
+    public function bind(string $param, $value, $type = null): void
     {
         if (is_null($type)) {
             switch (true) {
@@ -61,6 +61,11 @@ class Database
     {
         $this->execute();
         return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function rowCount(): int
+    {
+        return $this->stmt->rowCount();
     }
 
     public function single(): array
