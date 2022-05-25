@@ -23,9 +23,12 @@ class App
         $this->controller = new $this->controller;
 
         // Method
-        if (isset($url[1]) && method_exists($this->controller, $url[1])) {
-            $this->method = $url[1];
-            unset($url[1]);
+        if (isset($url[1])) {
+            $method = str_replace('-', '', ucwords($url[1], '-'));
+            if (method_exists($this->controller, $method)) {
+                $this->method = $method;
+                unset($url[1]);
+            }
         }
 
         // Params
